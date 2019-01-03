@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 exports.__esModule = true;
 var message = 'Welcome Back!';
 console.log(message);
@@ -62,3 +75,62 @@ var b = 20;
 var multiType;
 multiType = 20;
 multiType = true;
+// can add type checking for arguments and can specify the return type with a colon after the arguments 
+function add(num1, num2) {
+    return num1 + num2;
+}
+add(5, 10);
+// optional parameters 
+// add a question mark after the parameter. optional parameters must come after required parameters
+function addMore(num1, num2) {
+    if (num2) {
+        return num1 + num2;
+    }
+    else {
+        return num1;
+    }
+}
+addMore(4);
+// default parameters
+function addExpected(num1, num2) {
+    if (num2 === void 0) { num2 = 10; }
+    return num1 + num2;
+}
+addExpected(5, 10);
+addExpected(5);
+// an object as a type 
+function fullestName(person) {
+    console.log(person.firstName + " " + person.lastName);
+}
+var p = {
+    firstName: 'Mandy'
+};
+fullestName(p);
+// classes
+var Employee = /** @class */ (function () {
+    function Employee(name) {
+        this.name = name;
+    }
+    Employee.prototype.greet = function () {
+        console.log("Good morning " + this.name);
+    };
+    return Employee;
+}());
+var employee1 = new Employee('Lars');
+console.log(employee1.name);
+employee1.greet();
+// inheritance 
+var Manager = /** @class */ (function (_super) {
+    __extends(Manager, _super);
+    function Manager(managerName) {
+        return _super.call(this, managerName) || this;
+    }
+    Manager.prototype.delegateWork = function () {
+        console.log("Manager delegating tasks");
+    };
+    return Manager;
+}(Employee));
+var manager1 = new Manager('Kelly');
+manager1.greet();
+manager1.delegateWork();
+console.log(manager1.name);

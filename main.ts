@@ -74,3 +74,77 @@ let b = 20;
 let multiType: number | boolean; 
 multiType = 20; 
 multiType = true; 
+
+// can add type checking for arguments and can specify the return type with a colon after the arguments 
+function add(num1: number, num2: number): number{
+    return num1 + num2; 
+}
+add(5, 10);
+
+// optional parameters 
+// add a question mark after the parameter. optional parameters must come after required parameters
+function addMore(num1: number, num2?: number): number {
+    if(num2){
+        return num1 + num2; 
+    } else {
+        return num1; 
+    }
+}
+addMore(4); 
+
+// default parameters
+function addExpected(num1: number, num2: number = 10): number {
+    return num1 + num2; 
+}
+addExpected(5, 10); 
+addExpected(5); 
+
+
+// interfaces (like classes?) reduces replicating object types 
+interface Person {
+    firstName: string;
+    // can make properties optional here 
+    lastName?: string;
+}
+
+// an object as a type 
+function fullestName(person: Person) {
+    console.log(`${person.firstName} ${person.lastName}`);
+}
+
+let p = {
+    firstName: 'Mandy',
+}
+fullestName(p);
+
+// classes
+class Employee {
+    name: string; 
+
+    constructor(name: string){
+        this.name = name; 
+    }
+
+    greet(){
+        console.log(`Good morning ${this.name}`);
+    }
+}
+
+let employee1 = new Employee('Lars');
+console.log(employee1.name);
+employee1.greet();
+
+// inheritance 
+class Manager extends Employee {
+    constructor(managerName: string){
+        super(managerName);
+    }
+    delegateWork(){
+        console.log(`Manager delegating tasks`);
+    }
+}
+
+let manager1 = new Manager('Kelly');
+manager1.greet();
+manager1.delegateWork();
+console.log(manager1.name);
